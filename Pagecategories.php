@@ -1,8 +1,14 @@
 <?php
 require './dao/categoriesDAO.php';
+$wow = 5;
+
+
 $categories = new CategoriesDAO();
 $categorieDATA = $categories->get_categories();
 $pdo = Database::getInstance()->getConnection();
+// Redirect back to the categories page or any other page
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +20,19 @@ $pdo = Database::getInstance()->getConnection();
     <script src="https://cdn.tailwindcss.com/"></script>
     <title>Document</title>
 </head>
-
+<?php
+echo $wow;
+if (isset($_POST['delete'])) {
+    $wow = intval($_POST['delete']);
+    
+    // Instantiate your CategoriesDAO class
+    $categories = new CategoriesDAO();
+    echo $wow;
+    // Call the Delete_category function
+    $categories->Delete_category($wow);
+}
+echo $wow;
+?>
 <body class="bg-white">
         <!-- Header Navbar -->
         <?php
@@ -47,6 +65,7 @@ $pdo = Database::getInstance()->getConnection();
 
         <!-- Product List -->
         <section class="py-10 bg-gray-100">
+        <form  method="post">
             <div class="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
             <?php
@@ -65,7 +84,9 @@ $pdo = Database::getInstance()->getConnection();
                                     <div class="mt-3 flex items-end justify-between">
                                         <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
 
-                                            <a href="action_cat.php?delete='.$category->getName().'"><button class="text-sm">Supprimer</button></a>
+                                        <a name="delete" value = "' . $category->getId() . '" href="action_cat.php?delete=' . $category->getId() . '" onclick="return confirm(Are you sure you want to delete this category?)">
+                                        <button class="text-sm">Supprimer</button>
+                                        </a>
                                         </div>
                                         <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
 
@@ -80,6 +101,7 @@ $pdo = Database::getInstance()->getConnection();
                 }
                 ?>
             </div>
+            </form>
         </section>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 

@@ -42,6 +42,7 @@ $pdo = Database::getInstance()->getConnection();
             <span>ALL</span>
         </button>
         <?php
+        
         foreach ($categorieDATA as $category) {
             echo '
                 <button rel="noopener noreferrer" name="category" value="' . $category->getId() . '" class=" foudi flex items-center flex-shrink-0 px-5 py-3 space-x-2 rounded-t-lg text-gray-900">
@@ -89,7 +90,7 @@ $pdo = Database::getInstance()->getConnection();
                             <div class="mt-1 p-2">
                                 <h2 class="text-slate-700">'. $row->getName() .'</h2>
                                 <div class="mt-3 flex items-end justify-between">
-                                    <p class="text-lg font-bold text-blue-500">$'. $row->getPrix_final().'</p>
+                                    <p class="text-lg font-bold text-blue-500">$'. $row->getnew_price().'</p>
 
                                     <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">

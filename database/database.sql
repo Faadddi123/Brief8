@@ -1,8 +1,8 @@
 -- @block
-DROP DATABASE ELECTRONACER_OOP ; 
+DROP DATABASE ELECTRONACER ; 
 -- @block
-CREATE DATABASE ELECTRONACER_OOP ; 
-USE ELECTRONACER_OOP ; 
+CREATE DATABASE ELECTRONACER ; 
+USE ELECTRONACER ; 
 CREATE TABLE users (
    id int PRIMARY KEY AUTO_INCREMENT, 
    username varchar(25),
@@ -61,11 +61,7 @@ CREATE TABLE commande_produit (
 );
 
 
--- @block
-INSERT INTO category (name, description, image) VALUES
-("arduino","adadadadadada", "New York"),
-("electrique","adadadadadada", "New York"),
-("switch","adadadadadada", "New York");
+
 -- @block
 INSERT INTO product (name, old_price, new_price, category, image, stock, country, city,nbachat) VALUES
 ("LED", 0.5, 0.25, 1, "LED.jpg", 12, "USA", "New York",10),
@@ -98,3 +94,9 @@ WHERE nbachat = (
     FROM product p2
     WHERE p1.category = p2.category
 );
+
+-- @block
+INSERT INTO category (name, description, image) VALUES
+("arduino","adadadadadada", "New York"),
+("electrique","adadadadadada", "New York"),
+("switch","adadadadadada", "New York");

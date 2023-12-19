@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\projects\poo brief 1\database\connexion.php';
-require_once 'C:\xampp\htdocs\projects\poo brief 1\users.php';
+require_once 'C:\xampp\htdocs\OOP_electro\database\connexion.php';
+require_once 'C:\xampp\htdocs\OOP_electro\products.php';
 class usersDAO{
     private $pdo;
     public function __construct(){

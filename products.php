@@ -3,29 +3,27 @@
  class Products{
     private $id;
     private $name;
-    private $code_barre;
-    private $prix_achat;
-    private $prix_final;
-    private $description;
-    private $quantité_min;
-    private $quantité_stock;
-    private $offre_prix;
-    private $category;
+    private $old_price;
+    private $new_price;
     private $image;
+    private $stock;
+    private $country;
+    private $city;
+    private $nbachat;
+    private $category;
 
-
-    public function __construct($id,$name,$code_barre,$prix_achat,$prix_final,$description,$quantité_min,$quantité_stock,$offre_prix,$category,$image) {
+    public function __construct($id,$name,$old_price,$new_price,$image,$stock,$country,$city,$nbachat,$category) {
         $this->id = $id;
         $this->name = $name;
-        $this->code_barre = $code_barre;
-        $this->prix_achat = $prix_achat;
-        $this->prix_final = $prix_final;
-        $this->description = $description;
-        $this->quantité_min = $quantité_min;
-        $this->quantité_stock = $quantité_stock;
-        $this->offre_prix = $offre_prix;
-        $this->category = $category;
+        $this->old_price = $old_price;
+        $this->new_price = $new_price;
         $this->image = $image;
+        $this->stock = $stock;
+        $this->country = $country;
+        $this->city = $city;
+        $this->nbachat = $nbachat;
+        $this->category = $category;
+        
     }
 
 
@@ -38,59 +36,59 @@
     }
 
     /**
-     * Get the value of code_barre
+     * Get the value of old_price
      */ 
-    public function getCode_barre()
+    public function getold_price()
     {
-        return $this->code_barre;
+        return $this->old_price;
     }
 
     /**
-     * Get the value of prix_achat
+     * Get the value of new_price
      */ 
-    public function getPrix_achat()
+    public function getnew_price()
     {
-        return $this->prix_achat;
+        return $this->new_price;
     }
 
     /**
-     * Get the value of prix_final
+     * Get the value of image
      */ 
-    public function getPrix_final()
+    public function getimage()
     {
-        return $this->prix_final;
+        return $this->image;
     }
 
     /**
-     * Get the value of description
+     * Get the value of stock
      */ 
-    public function getDescription()
+    public function getstock()
     {
-        return $this->description;
+        return $this->stock;
     }
 
     /**
-     * Get the value of quantité_min
+     * Get the value of country
      */ 
-    public function getQuantité_min()
+    public function getcountry()
     {
-        return $this->quantité_min;
+        return $this->country;
     }
 
     /**
-     * Get the value of quantité_stock
+     * Get the value of city
      */ 
-    public function getQuantité_stock()
+    public function getcity()
     {
-        return $this->quantité_stock;
+        return $this->city;
     }
 
     /**
-     * Get the value of offre_prix
+     * Get the value of nbachat
      */ 
-    public function getOffre_prix()
+    public function getnbachat()
     {
-        return $this->offre_prix;
+        return $this->nbachat;
     }
 
     /**
@@ -101,13 +99,7 @@
         return $this->category;
     }
 
-    /**
-     * Get the value of image
-     */ 
-    public function getImage()
-    {
-        return $this->image;
-    }
+    
 
     /**
      * Set the value of id
