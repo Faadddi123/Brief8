@@ -1,4 +1,6 @@
 <?php
+require './dao/productsDAO.php';
+
 require './dao/categoriesDAO.php';
 
 ?>
@@ -14,6 +16,8 @@ require './dao/categoriesDAO.php';
 </head>
 <body>
   <?php 
+$getcategory = new CategoriesDAO();
+$categories = $getcategory->get_categories();
   $category = "";
   $description = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,15 +29,21 @@ require './dao/categoriesDAO.php';
       echo "image not found!";
   }
   
-      $description = $_POST["descritpion"];
+      $nameproduct = $_POST["nameproduct"];
+      $new_price = $_POST["Price"];
+      $stock = $_POST["stock"];
+      $country = $_POST["Country"];
+      $city = $_POST["city"];
+      $nbachat = 0;
       $category = $_POST["category"];
+      $old_price = $new_price * 1.1;
       if ($category == "" && empty($nameimage) && $description == "") {
         echo 'error';
-    } else if ($category != "" && !empty($nameimage) && $description != "") {
-        move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/image_category/" . $_FILES['imageToUpload']['name']);
+    } else if ($nameproduct != "" && !empty($nameimage) && $new_price != "" && $stock != 0 && $country != "" && $city != "" && $category != "") {
+        move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/image/" . $_FILES['imageToUpload']['name']);
     
-        $DAOcatergory = new CategoriesDAO();
-        $DAOcatergory->add_Category($category,$description,$nameimage);
+        $DAOproduct = new productsDAO();
+        $DAOproduct->add_Product($nameproduct,$old_price,$new_price,$nameimage,$stock,$country,$city,$nbachat,$category);
     }
   }
   include('header.php');
@@ -57,11 +67,31 @@ require './dao/categoriesDAO.php';
           </div>
   
           <div class="mt-10 p-2">
-            <div class="flex">
+            <div class="flex pb-8">
             
-            <input class="text-slate-700" name="category" placeholder="name de category"></input>
+            <input class="text-slate-700" name="nameproduct" placeholder="name de Produit"></input>
 
-            <input class="text-slate-700" name="descritpion" placeholder="description here"></input>
+            <select name="category">
+              <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category->getId(); ?>"><?= $category->getName(); ?></option>
+              <?php endforeach; ?>
+            </select>
+            
+            </div>
+            <div class="flex pb-8">
+
+            <input class="text-slate-700" name="city" placeholder="City"></input>
+
+            <input class="text-slate-700" name="Country" placeholder="Country"></input>
+            
+
+            
+            </div>
+            <div class="flex pb-8">
+            
+            <input class="text-slate-700" type="number" name="stock" placeholder="Stock"></input>
+
+            <input class="text-slate-700" type="number" name="Price" placeholder="Price"></input>
             
             </div>
             

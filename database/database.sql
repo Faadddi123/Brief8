@@ -85,7 +85,7 @@ INSERT INTO product (name, old_price, new_price, category, image, stock, country
 ("PCB", 5.0, 2.5, 2, "PCB.jpg", 4, "Belgium", "Brussels",6),
 ("Oscillator", 1.5, 0.75, 1, "Oscillator.jpg", 20, "Argentina", "Buenos Aires",88);
 
-
+-- @block
 
 SELECT *
 FROM product p1
@@ -96,6 +96,9 @@ WHERE nbachat = (
 );
 
 -- @block
+
+delete FROM category;
+ALTER TABLE category AUTO_INCREMENT = 1;
 INSERT INTO category (name, description, image) VALUES
 ("arduino","adadadadadada", "New York"),
 ("electrique","adadadadadada", "New York"),

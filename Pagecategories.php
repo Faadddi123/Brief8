@@ -3,6 +3,22 @@ require './dao/categoriesDAO.php';
 $wow = 5;
 
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["delete"])) {
+        $iddelete = intval($_POST["delete"]);
+
+        // Assuming productsDAO is the class name
+        $deletcategoies = new CategoriesDAO();
+        $deletcategoies->Delete_category($iddelete);
+    }
+    if (isset($_POST["delete"])) {
+        $iddelete = intval($_POST["delete"]);
+
+        // Assuming productsDAO is the class name
+        $deletcategoies = new CategoriesDAO();
+        $deletcategoies->Delete_category($iddelete);
+    }
+}
 $categories = new CategoriesDAO();
 $categorieDATA = $categories->get_categories();
 $pdo = Database::getInstance()->getConnection();
@@ -21,17 +37,8 @@ $pdo = Database::getInstance()->getConnection();
     <title>Document</title>
 </head>
 <?php
-echo $wow;
-if (isset($_POST['delete'])) {
-    $wow = intval($_POST['delete']);
-    
-    // Instantiate your CategoriesDAO class
-    $categories = new CategoriesDAO();
-    echo $wow;
-    // Call the Delete_category function
-    $categories->Delete_category($wow);
-}
-echo $wow;
+
+
 ?>
 <body class="bg-white">
         <!-- Header Navbar -->
@@ -84,14 +91,14 @@ echo $wow;
                                     <div class="mt-3 flex items-end justify-between">
                                         <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
 
-                                        <a name="delete" value = "' . $category->getId() . '" href="action_cat.php?delete=' . $category->getId() . '" onclick="return confirm(Are you sure you want to delete this category?)">
-                                        <button class="text-sm">Supprimer</button>
+                                        <a  onclick="return confirm(Are you sure you want to delete this category?)">
+                                        <button name="delete" value = "' . $category->getId() . '" class="text-sm">Supprimer</button>
                                         </a>
                                         </div>
                                         <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
 
 
-                                            <a href="edit_cat.php?edit='.$category->getName().'"><button class="text-sm">Modifier</button></a>
+                                            <a ><button name="Modify" value = "' . $category->getId() . '" class="text-sm">Modifier</button></a>
                                         </div>
                                     </div>
                                 </div>

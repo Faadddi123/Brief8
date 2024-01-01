@@ -1,16 +1,23 @@
 <?php
 require './dao/productsDAO.php';
 require './dao/categoriesDAO.php';
-$categoriespress = 0;
-if(isset($_POST["category"])){
-    $categoriespress = $_POST["category"];
-    
-}else{
-    $categoriespress = 0;
+
+
+
+
+ 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["supp"])) {
+        $idToDelete = intval($_POST["supp"]);
+
+        // Assuming productsDAO is the class name
+        $deletproducts = new productsDAO();
+        $deletproducts->Delete_product($idToDelete);
+    }
 }
-echo $categoriespress;
+
 $products = new productsDAO();
-$productDATA = $products->get_products_based_category($categoriespress);
+$productDATA = $products->get_products();
 $POPproductDATA = $products->get_popular_products();
 
 $categories = new CategoriesDAO();
@@ -39,7 +46,7 @@ $pdo = Database::getInstance()->getConnection();
     <div class="pt-32  bg-white">
         <h1 class="text-center text-2xl font-bold text-gray-800">Categories</h1>
     </div>
-    <form method="post">
+
     <!-- Tab Menu -->
     <div id="filter" class="flex flex-wrap items-center overflow-x-auto overflow-y-hidden py-10 justify-center bg-white text-gray-800">
         <button id="foudi" rel="noopener noreferrer" name="category" value="0" class="foudi flex items-center flex-shrink-0 px-5 py-3 space-x-2 text-gray-600">
@@ -48,7 +55,6 @@ $pdo = Database::getInstance()->getConnection();
             </svg>
             <span>ALL</span>
         </button>
-        
         <?php
         
         foreach ($categorieDATA as $category) {
@@ -65,7 +71,7 @@ $pdo = Database::getInstance()->getConnection();
         }
         ?>
     </div>
-    </form>
+
     <div class="flex">
         <div class="mr-5">Trier par prix</div>
         <input class="border-4" type="number" placeholder="low than" name="Tprice">
@@ -82,7 +88,7 @@ $pdo = Database::getInstance()->getConnection();
         <input tybe="text" name="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos...">
         <button type="submit" name="sendsearch" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
     </div>
-
+        <form method="post">
     <!-- Product List -->
     <section class="py-10 bg-gray-100">
         <div class="mx-auto grid max-w-6xl product-menu grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -100,12 +106,17 @@ $pdo = Database::getInstance()->getConnection();
                                 <div class="mt-3 flex items-end justify-between">
                                     <p class="text-lg font-bold text-blue-500">$'. $row->getnew_price().'</p>
 
-                                    <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                        </svg>
+                                    <div class="flex items-center space-x-1.5 rounded-lg  bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
+                                        
 
-                                        <a href="action_cart.php?id= '. $row->getId() .'"><button class="text-sm">Add to cart</button></a>
+                                        
+                                        <a ><button name = "modd"  value =  "'. $row->getId() .'" class="text-sm">MODD</button></a>
+                                    </div>
+                                    <div class="flex items-center space-x-1.5 rounded-lg  bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
+                                        
+
+                                        
+                                        <a ><button type="submit" name = "supp"  value =  "'. $row->getId() .'" class="text-sm">SUPP</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -115,15 +126,16 @@ $pdo = Database::getInstance()->getConnection();
             }
         ?>
         </div>
+        
     </section>
-
+    </form>
     <?php
     // include('panier.php');
     include('footer.php');
     ?>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
- <script src="pagination.js"></script>
+
 </body>
  
 </html>

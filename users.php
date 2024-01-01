@@ -18,7 +18,7 @@ class Users{
             $this->adresse= $adresse;
             $this->ville=$ville;
             $this->password=$password;
-            $this->ype = $type;
+            $this->type = $type;
         }
 
 

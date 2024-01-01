@@ -6,18 +6,22 @@ $products = new productsDAO();
 $POPproductDATA = $products->get_popular_products();
     ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landmark</title>
+    
+
     <!--
         For more customization options, we would advise
         you to build your TailwindCSS from the source.
         https://tailwindcss.com/docs/installation
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.2/tailwind.min.css">
+
     <!-- Small CSS to Hide elements at 1520px size -->
     <style>
         @media(max-width:1520px) {
@@ -40,6 +44,7 @@ $POPproductDATA = $products->get_popular_products();
             background: #a0aec0;
         }
     </style>
+  
 </head>
 <body class="overflow-x-hidden antialiased">
 <?php
@@ -50,7 +55,6 @@ $POPproductDATA = $products->get_popular_products();
         <div
             class="z-0 flex   h-full max-w-6xl px-8 ">
 
-            
 
             
 
@@ -426,45 +430,248 @@ $POPproductDATA = $products->get_popular_products();
     <div class="pt-32  bg-white">
             <h1 class="text-center text-6xl font-bold text-gray-800">Populaire Product</h1>
         </div>
-    <!-- produits populaires -->
-    <section class="py-10 bg-gray-100">
-        <div class="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-            <?php
-            foreach($POPproductDATA as $product){
-                echo '
-                <article class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
-                    <a >
-                    <div class="relative flex items-end overflow-hidden rounded-xl">
-                        <img src="assets/image/' . $product->getImage() . '" alt="Hotel Photo" />
-                        <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                        </svg>
-                        </div>
-                    </div>
-  
-                    <div class="mt-1 p-2">
-                        <h2 class="text-slate-700">' . $product->getName() . '</h2>
-                        <div class="mt-3 flex items-end justify-between">
-                            <p class="text-lg font-bold text-blue-500">$' . $product->getPrix_final() . '</p>
-  
-                        <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                            </svg>
-  
-                            <button class="text-sm">Add to cart</button>
-                        </div>
-                        </div>
-                    </div>
-                    </a>
-                </article>
-            ';
-        }
-            ?>
-        </div>
-    </section>
+    <section class="py-10 bg-gray-100 mt-20">
+                <div class="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        <?php
+        foreach($POPproductDATA as $row){
+              echo '
+              <article class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
+                  <a >
+                  <div class="relative flex items-end overflow-hidden rounded-xl">
+                      <img src="assets/image/' . $row->getimage() . '" alt="Hotel Photo" />
+                      <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                      </svg>
 
+                      <button class="text-sm">Add to cart</button>
+                      </div>
+                  </div>
+
+                  <div class="mt-1 p-2">
+                      <h2 class="text-slate-700">' . $row->getName() . '</h2>
+                      <p class="mt-1 text-sm text-slate-400">' . $row->getcity() . ', ' . $row->getcountry() . '</p>
+
+                      <div class="mt-3 flex items-end justify-between">
+                          <p class="text-lg font-bold text-blue-500">$'. $row->getnew_price() . '</p>
+
+                      <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                          </svg>
+
+                          <button class="text-sm">Add to cart</button>
+                      </div>
+                      </div>
+                  </div>
+                  </a>
+              </article>
+          ';
+          }
+      
+
+        ?>
+                </div>
+        </section>
+    <!-- /our dakshi lima3rof -->
+    <!-- Pricing Section -->
+    <div class="relative px-8 py-10 bg-white border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-8">
+
+        <div id="pricing" class="container flex flex-col items-center h-full max-w-6xl mx-auto">
+            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Our Pricing</h2>
+            <h3
+                class="w-full max-w-2xl px-5  mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
+                Simple, Transparent Pricing for Everyone</h3>
+
+            <div class="max-w-full mx-auto md:max-w-6xl sm:px-8">
+                <!-- Basic Pricing -->
+                <div class="relative flex flex-col items-center  sm:flex-row">
+                    <div
+                        class="relative z-0 w-11/12 max-w-sm my-8 border border-gray-200 rounded-lg sm:w-3/5 lg:w-1/3 sm:my-5 md:-mr-4">
+                        <div class="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
+                            <div
+                                class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
+                                <h3 class="p-3 text-lg font-bold tracking-wide text-center uppercase">Basic<span
+                                        class="ml-2 font-light">Plan</span></h3>
+                                <h4
+                                    class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
+                                    <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>48</h4>
+                                <p class="text-sm text-gray-600">In our basic plan you can take advantage of all these
+                                    features below.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap px-6 mt-8">
+                                <ul>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">Awesome Feature</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">And Another Cool Feature</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">One More Feature</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex items-center  p-8 uppercase">
+                                <a href="#_"
+                                    class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-green-600">Select
+                                    This Plan</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pro Pricing -->
+                    <div
+                        class="relative z-10 w-full max-w-md my-8 bg-white rounded-lg shadow-lg sm:w-2/3 lg:w-1/3 sm:my-5">
+                        <div
+                            class="py-4 text-sm font-semibold leading-none tracking-wide text-center text-white uppercase bg-indigo-500 rounded-t">
+                            Most Popular</div>
+                        <div class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
+                            <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Pro<span
+                                    class="ml-2 font-light">Plan</span></h3>
+                            <h4
+                                class="flex items-center justify-center pb-6 text-5xl font-bold text-center text-gray-900">
+                                <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>98</h4>
+                            <p class="text-sm text-gray-600">Our most popular package is the Pro Plan which gives you
+                                access to the
+                                following:</p>
+                        </div>
+                        <div class="flex justify-start pl-12 mt-8 sm:justify-start">
+                            <ul>
+                                <li class="flex items-center">
+                                    <div class="p-2 text-green-500 rounded-full fill-current">
+                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="ml-3 text-lg text-gray-700">Really Cool Features</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="p-2 text-green-500 rounded-full fill-current ">
+                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="ml-3 text-lg text-gray-700">Another Cool Feature</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="p-2 text-green-500 rounded-full fill-current ">
+                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="ml-3 text-lg text-gray-700">And One More</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center  p-8 uppercase">
+                            <a href="#_"
+                                class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-indigo-600">Select
+                                This Plan</a>
+                        </div>
+                    </div>
+                    <!-- Premium Pricing -->
+                    <div
+                        class="relative z-0 w-11/12 max-w-sm my-8 rounded-lg shadow-lg sm:w-3/5 lg:w-1/3 sm:my-5 md:-ml-4">
+                        <div class="overflow-hidden text-black bg-white rounded-lg shadow-lg ">
+                            <div
+                                class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-8">
+                                <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Premium<span
+                                        class="ml-2 font-light">Plan</span></h3>
+                                <h4
+                                    class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
+                                    <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>78</h4>
+                                <p class="pl-2 text-sm text-gray-600">With our premium plan you can take advantage of
+                                    all the following
+                                    features:</p>
+                            </div>
+                            <div class="flex flex-wrap px-8 mt-8">
+                                <ul>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">Totally Tubular Feature</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">Super Cool Feature</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <div class="p-2 text-green-500 rounded-full fill-current ">
+                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="ml-3 text-lg text-gray-700">And One More</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex items-center  p-8 uppercase">
+                                <a href="#_"
+                                    class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-green-600">Select
+                                    This Plan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Pricing Section -->
 
     <!-- Start Testimonials -->
     <div id="testimonials"
@@ -586,24 +793,102 @@ $POPproductDATA = $products->get_popular_products();
         </div>
     </div>
     <!-- End Testimonials-->
-    <?php
-    // include('panier.php');
-    include('footer.php');
-    ?>
+
+
+    <footer class="px-4 pt-12 pb-8 text-white bg-white border-t border-gray-200">
+        <div class="container flex flex-col justify-between max-w-6xl px-4 mx-auto overflow-hidden lg:flex-row">
+            <div class="w-full pl-12 mr-4 text-left lg:w-1/4 sm:text-center sm:pl-0 lg:text-left">
+                <a href="/"
+                    class="flex justify-start  text-left sm:text-center lg:text-left sm:justify-center lg:justify-start">
+                    <span class="flex items-start sm:items-center">
+                        <svg class="w-auto h-6 text-gray-800 fill-current" viewBox="0 0 194 116"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g fill-rule="evenodd">
+                                <path
+                                    d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z">
+                                </path>
+                                <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </a>
+                <p class="mt-6 mr-4 text-base text-gray-500">Crafting the next-level of user experience and engagement.
+                </p>
+            </div>
+            <div class="block w-full pl-10 mt-6 text-sm lg:w-3/4 sm:flex lg:mt-0">
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        Product</li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Features</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Integrations</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Pricing</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">FAQ</a></li>
+                </ul>
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        Company</li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Privacy</a>
+                    </li>
+                    <li><a href="#_" class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Terms
+                            of
+                            Service</a></li>
+                </ul>
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        TailwindCSS
+                    </li>
+                    <li><a href="https://devdojo.com/tailwindcss/components"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tailwind
+                            Components</a></li>
+                    <li><a href="https://devdojo.com/tailwindcss/templates"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tailwind
+                            Templates</a></li>
+                    <li><a href="https://devdojo.com/tails"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tails</a></li>
+                </ul>
+                <div class="flex flex-col w-full text-gray-700">
+                    <div class="inline-block px-3 py-2 mt-5 font-bold text-gray-800 uppercase md:mt-0">Follow Us</div>
+                    <div class="flex justify-start pl-4 mt-2">
+                        <a class="flex items-center  mr-6 text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z" />
+                            </svg>
+                        </a>
+                        <a class="flex items-center  mr-6 text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z" />
+                            </svg>
+                        </a>
+                        <a class="flex items-center  text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-4  mt-10 text-center text-gray-500 border-t border-gray-100">© 2020 Landmark. All rights
+            reserved.</div>
+
+            <div class="pt-2  mt-2 text-center text-gray-600 border-t border-gray-100">Distributed By <a href="https://themewagon.com/">Themewagon</a></div>
+    </footer>
 
     <!-- a little JS for the mobile nav button -->
-    <script>
-        if (document.getElementById('nav-mobile-btn')) {
-            document.getElementById('nav-mobile-btn').addEventListener('click', function () {
-                if (this.classList.contains('close')) {
-                    document.getElementById('nav').classList.add('hidden');
-                    this.classList.remove('close');
-                } else {
-                    document.getElementById('nav').classList.remove('hidden');
-                    this.classList.add('close');
-                }
-            });
-        }
-    </script>
+
 </body>
 </html>

@@ -1,20 +1,25 @@
 <?php
-require_once 'C:\xampp\htdocs\OOP_electro\database\connexion.php';
-require_once 'C:\xampp\htdocs\OOP_electro\products.php';
-require 'C:/xampp/htdocs/OOP_electro/categories.php';
+require_once 'database\connexion.php';
+require_once 'products.php';
+require 'categories.php';
 class CategoriesDAO{
     private $pdo;
 
     public function __construct(){
         $this->pdo = Database::getInstance()->getConnection(); 
     }
+
     
-    public function add_Categpry($name, $description, $image){
-        $add_Categpry = "INSERT INTO category (name,description,image)
-        VALUES ($name, $description, $image);";
-        $stmt = $this->pdo->prepare($add_Categpry);
+    public function add_Category($name, $description, $image) {
+        $add_Category = "INSERT INTO category (name, description, image) VALUES (:name, :description, :image)";
+        $stmt = $this->pdo->prepare($add_Category);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+        
         $stmt->execute();
     }
+    
 
 
     public function get_categories(){

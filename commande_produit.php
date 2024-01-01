@@ -1,6 +1,6 @@
 <?php
 
-public class ProCommande{
+ class ProCommande{
     private $idcom;
     private $idproduit;
     private $quantite;
